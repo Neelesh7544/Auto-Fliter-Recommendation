@@ -1,0 +1,25 @@
+# Part 3 - Making new predictions
+
+import numpy as np
+from keras.preprocessing import image
+from keras.models import load_model
+
+def fn(picname):
+	classifier = load_model('newer')
+
+	test_image = image.load_img(picname, target_size = (64, 64))
+	test_image = image.img_to_array(test_image)
+	test_image = np.expand_dims(test_image, axis = 0)
+	result = classifier.predict(test_image)
+
+	i = 0
+	for r in result:
+		if r == 1:
+			return i
+		i += 1
+
+#training_set.class_indices
+
+#print(classifier.classes)
+#print(result)
+

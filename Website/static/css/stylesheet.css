@@ -1,0 +1,28 @@
+body {
+	cursor: url('http://virtualcustoms.net/attachment.php?attachmentid=53337&d=1331946241'), default;
+}
+
+#logo {
+	display: block; 
+	margin: auto; 
+	height: 450px
+}
+
+#arrow {
+	display: block; 
+	margin: auto; 
+	height: 150px
+}
+
+#flame {
+	display: block;
+    margin: auto;
+	float: left;
+	height: 300px;
+	padding: 30px;
+}
+
+.progress {
+  margin: 10px;
+  width: 700px;
+}

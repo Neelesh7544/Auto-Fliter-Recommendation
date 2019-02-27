@@ -1,0 +1,91 @@
+{% extends 'Website/base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}
+<title>Auto-Filter</title>
+{% endblock %}
+
+{% block content %}
+<div id="fb-root"></div>
+
+<div id="fullpage">
+	<div class='section'>
+		<div class='ui center aligned container' style='color:white;'>
+			<div class='panel panel-primary' style='text-align:center;'>
+				<div class='panel-heading'>
+				<h1>Generate awesome filters for your images</h1>
+				</div>
+				<div class='panel-body' style='color:black;'>
+				<p>No more confusion. We analyze your image and automatically provide you the final image with the best filter(s) applied.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="ui center aligned container" align="center">
+			<div id="content">
+				<form method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<input type="file" name="myfile" class="btn btn-primary">
+	<br>					
+					<button type="submit" class="btn btn-success" id='butt' onclick="progress_bar()">Upload</button>
+				</form>
+<br>
+				<div class="progress">
+					<div id="dynamic" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+					<span id="current-progress"></span>
+					</div>
+				</div>
+
+				{% if vid %}
+					
+					<br>
+					<div class="ui three column center aligned grid">
+						<div class="row">
+							<div class="column">
+								<button type="submit" class="ui blue button" onclick="filter('{{fil1.number}}', {{fil1.likes}}, 'filbtn_1')">Apply Filter 1</button>
+							</div>
+							<div class="column">
+								<button type="submit" class="ui blue button" onclick="filter('{{fil2.number}}', {{fil2.likes}}, 'filbtn_2')">Apply Filter 2</button>
+							</div>
+							<div class="column">
+								<button type="submit" class="ui blue button" onclick="filter('{{fil3.number}}', {{fil3.likes}}, 'filbtn_3')">Apply Filter 3</button>
+							</div>
+						</div>
+					</div>
+					<br><br>
+					<div class="ui two column center aligned grid">
+						<div class="row">
+							<div class="column">
+								<div class="ui centered image">
+									<font color="white"><h5>Original</h5></font><br>
+									<img style='max-height:400px;' src="{{ resu }}">
+								</div>
+							</div>
+							<div class="column">
+								<div class="ui centered image">
+									<div id="fil_name"></div>
+									<font color="white"><h5>Generated</h5></font>
+									<figure id="pic" class="">
+										<img src="{{ resu }}" style='max-height:370px;'>
+									</figure>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function review()
+{
+	confirm("Did you like the recommendations ?");
+}
+</script>
+
+{% endblock %}
